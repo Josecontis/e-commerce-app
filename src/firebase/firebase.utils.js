@@ -35,7 +35,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => { /
 	}	
 	return userRef;
 }
-
+//sintassi per login con google
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();

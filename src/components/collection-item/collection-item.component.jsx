@@ -1,6 +1,7 @@
 import React from 'react';
 import '../collection-item/collection-item.styles.scss';
 
+/*classe che definisce lo stile per singoli item o prodotti*/
 const CollectionItem = ({id, name, imageUrl, price}) => (
 <div className='collection-item'>
     <div className='image'  

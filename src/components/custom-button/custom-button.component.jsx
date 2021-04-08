@@ -1,6 +1,7 @@
 import React from 'react';
 import '../custom-button/custom-button.styles.scss';
 
+//qui si controlla che tipo di bottone è per applicare lo sile css corrispondente, children è la label del bottone
 const CustomButton = ({children, isGoogleSignIn, ...otherProps}) => (
     <button className={`${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`} {...otherProps}>
         {children}

@@ -1,7 +1,7 @@
 $sub-color: grey; //variabile di colore
 $main-color: black; //variabile di colore
 
-@mixin shrinkLabel{
+@mixin shrinkLabel{ //label che sale quando clicchi sull'area di testo
     top: -14px;
     font-size: 12px;
     color: $main-color;

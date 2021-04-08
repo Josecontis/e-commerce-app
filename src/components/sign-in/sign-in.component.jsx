@@ -2,7 +2,7 @@ import React from 'react';
 import FormInput from '../form-input/form-input.component.jsx';
 import CustomButton from '../custom-button/custom-button.component.jsx';
 
-import { signInWithGoogle } from '../../firebase/firebase.utils.js';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils.js';
 import './sign-in.styles.scss';
 
 class SignIn extends React.Component{
@@ -16,10 +16,18 @@ class SignIn extends React.Component{
         }
     }
 
-    handleSubmit = event => {
-        event.preventDefault();
-        this.setState({email: '', password: ''})
-    }
+    handleSubmit = async event => {
+		event.preventDefault();
+		const { email, password } = this.state;
+
+		try {
+			await auth.signInWithEmailAndPassword(email, password);
+			this.setState( {email: '', password: ''} )
+		} catch(e) {
+			console.log(e);
+		}
+        this.setState({email: '', password: ''}) //svuota le text area dopo l'accesso
+	}
 
     handleChange = event => {
         const {value, name} = event.target;

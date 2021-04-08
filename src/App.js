@@ -23,38 +23,36 @@ class App extends React.Component{
 
   componentDidMount(){
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => { //async per la richiesta API
-      if(!userAuth)
+      if(userAuth) //controlla se l'utente è autenticato
       {
         const userRef = await createUserProfileDocument(userAuth); //prelevo dati dell'utente da inserire nel DB
 
+        //prelevo l'id che non è in snapShot
         userRef.onSnapshot(snapShot => {
-          //prelevo l'id che non è in snapShot
-          this.setState({
+            this.setState({
             currentUser: {
               id: snapShot.id,
               ...snapShot.data()
             }
-          });
-
-          console.log(this.state);
+          })
         });
       }
-      this.setState({currentUser: userAuth});
+      this.setState({currentUser: userAuth}); //istanzio le info dell'utente connesso
     });
   }
 
   componentWillUnmount(){
-    this.unsubscribeFromAuth();
+    this.unsubscribeFromAuth(); //log out
   }
 
   render() {
   return (
     <div>
-      <Header currentUser={this.state.currentUser}/>
+      <Header currentUser={this.state.currentUser}/> {/*lo stato viene passato ad header per aggiornare la voce SIGN IN o SIGN OUT*/}
       <Switch>
         <Route exact path='/' component={HomePage}/> {/*exact indica che il path è univico per qll page, path è l'url che in questo caso di HomePage è nullo e component è la pagina*/}
-        <Route path='/shop' component={ShopPage}/>
-        <Route path='/signin' component={SignInAndSignUpPage}/>
+        <Route path='/shop' component={ShopPage}/> {/*assegna il link della pagina dei prodotti alla voce shoppage*/}
+        <Route path='/signin' component={SignInAndSignUpPage}/>{/*assegna il link della pagina di login alla voce SIGN IN o OUT*/}
       </Switch>
     </div>
   );

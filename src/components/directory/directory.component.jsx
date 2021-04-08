@@ -6,7 +6,7 @@ class Directory extends React.Component{
     constructor()
     {
         super();
-        this.state = {
+        this.state = { //section è l'array dei prodotti (JSON)
             sections: [{
                 title: 'hats',
                 imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
@@ -48,7 +48,7 @@ class Directory extends React.Component{
     render(){
         return(
             <div className='directory-menu'>
-            {
+            {//scandisce gli elementi in sections e aggiorna lo stato inserendo tanti menu item quanti sono le sections, inserendo i parametri
                 this.state.sections.map(section => (
                     <MenuItem key={section.id} title={section.title} imageUrl={section.imageUrl} size={section.size} linkUrl={section.linkUrl}/>
                 ))

@@ -8,8 +8,8 @@ import '../header/header.styles.scss';
 
 const Header = ({currentUser}) => (
     <div className='header'>
-        <Link lassName='logo-container' to='/'> {/*alla homepage*/}
-            <Logo lassName='logo'/>
+        <Link className='logo-container' to='/'> {/*alla homepage*/}
+            <Logo className='logo'/>
         </Link>
         <div className='options'>
             <Link className='option' to='/shop'>

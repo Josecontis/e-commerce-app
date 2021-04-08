@@ -12,22 +12,21 @@ var config = {
     measurementId: "G-T5NGHCEQ2T"
   };
 
-export const createUserProfileDocument = async (userAuth, additionalData) => {
-	if (!userAuth) return;
+export const createUserProfileDocument = async (userAuth, additionalData) => { //richiesta API ecco perchè async additionalData sono altri dati
+	if (!userAuth) return; //se l'utente non è autenticato return
 
-	const userRef = firestore.doc(`users/${userAuth.uid}`);
+	const userRef = firestore.doc(`users/${userAuth.uid}`); //query per vedere se l'utente è stato inserito
 	const snapShot = await userRef.get();
-	// console.log(snapShot);
 
-	if(!snapShot.exists) {
-		const { displayName, email } = userAuth;
-		const createdAt = new Date();
+	if(!snapShot.exists) {	//quinidi se non esiste viene cre
+		const { displayName, email } = userAuth; //preleva il nome e l'email dell'utente
+		const createdAt = new Date(); //crea un nuovo oggetto javascript che si riferisce al tempo in cui viene creato (tipo un id)
 
 		try {
-			await userRef.set({
+			await userRef.set({ //async request per inserire i dati nel DB tramite il metodo crea ovvero set
 				displayName,
 				email,
-				createdAt,
+				createdAt, 
 				...additionalData
 			})
 		} catch (error) {

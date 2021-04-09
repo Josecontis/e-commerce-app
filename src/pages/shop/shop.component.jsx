@@ -17,9 +17,7 @@ class ShopPage extends React.Component{
             {
                 //per ogni item identificato dall'id viene creato un oggetto CollectionPreview che è la lista fino a 4 item
                 collections.map(({id, ...otherCollectionProps}) => (
-                    <CollectionPreview key= {id}{ ...otherCollectionProps}>
-
-                    </CollectionPreview>
+                    <CollectionPreview key= {id}{ ...otherCollectionProps}/>
                 ))
             }
 

@@ -18,7 +18,7 @@ class Collection extends React.Component{
                 <span className='title'><h1>{collections.props.title.toUpperCase()}</h1></span>
          
             <div className='collection'>         
-            
+            <div></div>
                 <div className='preview'>
                 {
                     //per ogni item identificato dall'id viene creato un oggetto CollectionPreview che è la lista fino a 4 item

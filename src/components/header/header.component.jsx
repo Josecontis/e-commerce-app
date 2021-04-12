@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 import { auth } from '../../firebase/firebase.utils.js'
-
+import CartIcon from '../cart-icon/cart-icon.component.jsx';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component.jsx';
 import '../header/header.styles.scss';
 
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, hidden }) => (
     <div className='header'>
         <Link className='logo-container' to='/'> {/*Link è il tag per collegare una voce all'url in qst caso alla homepage*/}
             <Logo className='logo' />
@@ -25,12 +26,18 @@ const Header = ({ currentUser }) => (
                     :
                     <Link className='option' to='/signin'>SIGN IN</Link>
             }
+            <CartIcon />
         </div>
+        {
+            hidden ? null :
+                <CartDropdown />
+        }
     </div>
 );
 
-const mapStateToProps = state => ({ //state è rootreducer
-    currentUser: state.user.currentUser
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({ //state è rootreducer
+    currentUser,
+    hidden
 })
 
 export default connect(mapStateToProps)(Header);

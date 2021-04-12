@@ -2,14 +2,9 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
+    
 }
 
 .preview{
     display: contents;
 }
-
-.preview:nth-child(3n)::after {
-    content: '';
-    width: 100%;
-    height: 3000px;
-  }

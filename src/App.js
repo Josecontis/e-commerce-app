@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import './App.css';
 import SHOP_DATA from '../src/pages/shop/shop.data.js';
@@ -9,9 +10,15 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component.jsx';
 import Collection from './pages/categories/collection/collection.component.jsx';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx';
+import CheckoutPage from './pages/checkout/checkout.component';
+
 import Header from './components/header/header.component.jsx';
+
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+
 import { setCurrentUser } from './redux/user/user.actions';
+import { selectCurrentUser } from './redux/user/user.selectors';
+
 
 class App extends React.Component {
 
@@ -48,6 +55,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={HomePage} /> {/*exact indica che il path è univico per qll page, path è l'url che in questo caso di HomePage è nullo e component è la pagina*/}
           <Route path='/shop' component={ShopPage} /> {/*assegna il link della pagina dei prodotti alla voce shoppage*/}
+          <Route exact path='/checkout' component={CheckoutPage} />
           {/*se l'utente è loggato manda alla homepage altrimenti ricarica la pagina di signin */}
           <Route exact path='/signin' render={() => this.props.currentUser ? (
             <Redirect to='/' />
@@ -66,8 +74,8 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 })
 
 const mapDispatchToProps = dispatch => ({ //state è rootreducer

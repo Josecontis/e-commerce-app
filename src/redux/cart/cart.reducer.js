@@ -1,5 +1,5 @@
 import CartActionTypes from './cart.types.js';
-import {addItemToCart} from './cart.utils.js';
+import {addItemToCart, removeItemFromCart} from './cart.utils.js';
 
 const INITIAL_STATE = {
     hidden: true, //indica lo stato del popup carrello
@@ -15,11 +15,25 @@ const cartReducer = (state = INITIAL_STATE, action) =>{
                 ...state,
                 hidden: !state.hidden
             };
-        case CartActionTypes.ADD_ITEM: // se il tipo di questa azione è aggiungi al carrello 
+            case CartActionTypes.ADD_ITEM: // se il tipo di questa azione è aggiungi al carrello 
             return{
                 ...state,
                 cartItems: addItemToCart(state.cartItems, action.payload) //append agli item esistenti i nuovi con l'incremento della quantità se già presenti
-            }
+                
+            };
+            case CartActionTypes.REMOVE_ITEM: // se il tipo di questa azione è aggiungi al carrello 
+            return{
+                ...state,
+                cartItems: removeItemFromCart(state.cartItems, action.payload) //append agli item esistenti i nuovi con l'incremento della quantità se già presenti
+                
+            };
+            case CartActionTypes.CLEAR_ITEM_FROM_CART:
+			return{
+				...state,
+				cartItems: state.cartItems.filter(
+					cartItem => cartItem.id !== action.payload.id
+				)
+			};
         default:
             return state; //altrimenti restituisci lo stato non modificato
     }

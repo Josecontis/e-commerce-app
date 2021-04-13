@@ -2,6 +2,8 @@ import React from 'react';
 import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
 import './cart-icon.styles.scss';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
 import { toggleCartHidden } from '../../redux/cart/cart.action.js';
 import {selectCartItemsCount} from '../../redux/cart/cart.selectors';
 
@@ -19,8 +21,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 //metodo per aggiornare lo stato del numero sull'icona del carrello
-const mapStateToProps = state => ({
-    	itemCount: selectCartItemsCount(state)
+const mapStateToProps = createStructuredSelector({
+    	itemCount: selectCartItemsCount
      });
     
      

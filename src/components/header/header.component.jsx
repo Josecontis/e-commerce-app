@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 import { auth } from '../../firebase/firebase.utils.js'
 import CartIcon from '../cart-icon/cart-icon.component.jsx';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component.jsx';
+import {selectCartHidden} from '../../redux/cart/cart.selectors';
+import {selectCurrentUser} from '../../redux/user/user.selectors';
 import '../header/header.styles.scss';
 
 const Header = ({ currentUser, hidden }) => (
@@ -36,9 +39,9 @@ const Header = ({ currentUser, hidden }) => (
 );
 
 //metodo che collega i due stati alla barra header: lo stato di signout e lo stato del popup del carrello
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({ //state è rootreducer
-    currentUser,
-    hidden
+const mapStateToProps = createStructuredSelector({ //state è rootreducer
+    currentUser: selectCurrentUser,
+    hidden: selectCartHidden
 })
 
 export default connect(mapStateToProps)(Header);

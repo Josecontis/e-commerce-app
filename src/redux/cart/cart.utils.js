@@ -11,3 +11,19 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
     // se non esiste già nel carrello restituisce l'item nuovo con quantità 1
     return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
 };
+
+
+// metodo per aggiungere gli items al carrello passando la lista dei prodotti esistenti e concatenando altri nuovi prodotii in append
+export const removeItemFromCart = (cartItems, cartItemToRemove) => {
+    const existingCartItem = cartItems.find(cartItem => cartItem.id === cartItemToRemove.id); //restituisce il prodotto duplicato con la quantità aggiornata
+
+    if (existingCartItem.quantity === 1) {
+		return cartItems.filter(cartItem => cartItem.id !== cartItemToRemove.id)
+	} 
+
+	return cartItems.map(
+		cartItem => cartItem.id === cartItemToRemove.id 
+		? { ...cartItem, quantity: cartItem.quantity - 1 }
+		: cartItem
+	);
+};

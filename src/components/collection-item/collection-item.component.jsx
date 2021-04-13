@@ -25,6 +25,7 @@ const CollectionItem = ({ item, addItem }) => {
 	</div>
 )};
 
+//metodo per aggiungere al popup gli items
 const mapDispatchToProps = dispatch => ({
 	addItem: item => dispatch(addItem(item))
 })

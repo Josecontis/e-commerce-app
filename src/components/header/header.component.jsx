@@ -28,13 +28,14 @@ const Header = ({ currentUser, hidden }) => (
             }
             <CartIcon />
         </div>
-        {
+        { //se hidden è falso allora devi visualizzare il popup del carrello altrimenti null
             hidden ? null :
                 <CartDropdown />
         }
     </div>
 );
 
+//metodo che collega i due stati alla barra header: lo stato di signout e lo stato del popup del carrello
 const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({ //state è rootreducer
     currentUser,
     hidden

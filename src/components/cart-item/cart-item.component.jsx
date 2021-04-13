@@ -1,7 +1,8 @@
 import React from 'react';
 import '../cart-item/cart-item.styles.scss';
 
-const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
+//metodo che definisce la visualizzazione di ogni item aggiunto al carrello come ad esempio la quantità che viene aggiornata di volta in volta
+const CartItem = ({ item: { imageUrl, price, name, quantity } }) => ( //splitta le props di item passato come parametro
     <div className='cart-item'>
         <img src={imageUrl} alt='item' />
         <div className='item-details'>

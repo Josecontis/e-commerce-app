@@ -1,10 +1,11 @@
 import { userActionTypes } from './user.types';
 
+//come stato iniziale l'utente non è loggato quindi null
 const INITIAL_STATE = {
     currentUser: null
 };
 
-// a partire da uno stato iniziale  nullo se l'azione è SET_CURRENT_USER aggiorna lo stato
+// a partire da uno stato iniziale nullo se l'azione è SET_CURRENT_USER aggiorna lo stato
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
 

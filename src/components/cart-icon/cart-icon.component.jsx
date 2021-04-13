@@ -3,7 +3,9 @@ import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
 import './cart-icon.styles.scss';
 import { connect } from 'react-redux';
 import { toggleCartHidden } from '../../redux/cart/cart.action.js';
+import {selectCartItemsCount} from '../../redux/cart/cart.selectors';
 
+//metodo per visualizzaer nell'header l'icona del carrello e il numero dei prodotti
 const CartIcon = ({ toggleCartHidden , itemCount }) => (
     <div className='cart-icon' onClick={toggleCartHidden}>
         <ShoppingIcon className='shopping-icon'/>
@@ -11,15 +13,15 @@ const CartIcon = ({ toggleCartHidden , itemCount }) => (
     </div>
 )
 
+//metodo per aggiornare lo stato del popup del carrello
 const mapDispatchToProps = dispatch => ({
     toggleCartHidden: () => dispatch(toggleCartHidden())
 });
 
-const mapStateToProps = ({ cart: { cartItems } }) => ({
-    	itemCount: cartItems.reduce((accumalatedQuantity, cartItem) => 
-     		accumalatedQuantity + cartItem.quantity, 0)
+//metodo per aggiornare lo stato del numero sull'icona del carrello
+const mapStateToProps = state => ({
+    	itemCount: selectCartItemsCount(state)
      });
     
-
-
+     
 export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);

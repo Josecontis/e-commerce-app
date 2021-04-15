@@ -1,8 +1,12 @@
 body{
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: Helvetica,Arial,sans-serif;
     padding: 20px 60px;
 }
-
+.header-hr {
+    width: 100%;
+    margin: 10px;
+    opacity: 0.4;
+}
 a{
     text-decoration: none;
     color: black;

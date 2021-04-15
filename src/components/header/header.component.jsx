@@ -3,33 +3,47 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
-import { ReactComponent as Logo } from '../../assets/crown.svg'
-import { auth } from '../../firebase/firebase.utils.js'
-import CartIcon from '../cart-icon/cart-icon.component.jsx';
+import Logo from '../../assets/logo-remoteangel.png';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component.jsx';
 import {selectCartHidden} from '../../redux/cart/cart.selectors';
 import {selectCurrentUser} from '../../redux/user/user.selectors';
 import '../header/header.styles.scss';
 
-const Header = ({ currentUser, hidden }) => (
+const Header = ({ hidden }) => (
     <div className='header'>
-        <Link className='logo-container' to='/'> {/*Link è il tag per collegare una voce all'url in qst caso alla homepage*/}
-            <Logo className='logo' />
+        <div className='logo-container'>
+        <Link to='/'> {/*Link è il tag per collegare una voce all'url in qst caso alla homepage*/}
+        <img src={Logo} alt="website logo" />
         </Link>
+        </div>
         <div className='options'>
             <Link className='option' to='/shop'>
-                SHOP
+                HOME
             </Link>
             <Link className='option' to='/contact'>
-                CONTACT
-            </Link>{/*se l'utente è loggato allora visualizza in header testo SIGN OUT e se viene cliccato richiama il metodo signout per uscire*/}
-            {
-                currentUser ?
-                    <div className='option' onClick={() => auth.signOut()}>SIGN OUT</div>
-                    :
-                    <Link className='option' to='/signin'>SIGN IN</Link>
-            }
-            <CartIcon />
+                CHI SIAMO
+            </Link>
+            <Link className='option' to='/shop'>
+                PRODOTTI
+            </Link>
+            <Link className='option' to='/shop'>
+                SETTORI
+            </Link>
+            <Link className='option' to='/shop'>
+                SERVIZI
+            </Link>
+            <Link className='option' to='/shop'>
+                NEWS ED EVENTI
+            </Link>
+            <Link className='option' to='/shop'>
+                BLOG
+            </Link>
+            <Link className='option' to='/shop'>
+                FAQ
+            </Link>
+            <Link className='option' to='/shop'>
+                CONTATTI
+            </Link>
         </div>
         { //se hidden è falso allora devi visualizzare il popup del carrello altrimenti null
             hidden ? null :

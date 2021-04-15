@@ -13,6 +13,7 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import CheckoutPage from './pages/checkout/checkout.component';
 
 import Header from './components/header/header.component.jsx';
+import HigherHeader from './components/higer-header/higher-header.component';
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
@@ -51,6 +52,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <HigherHeader/>
+        <hr class="header-hr"></hr>
         <Header /> {/*lo stato viene passato ad header per aggiornare la voce SIGN IN o SIGN OUT*/}
         <Switch>
           <Route exact path='/' component={HomePage} /> {/*exact indica che il path è univico per qll page, path è l'url che in questo caso di HomePage è nullo e component è la pagina*/}

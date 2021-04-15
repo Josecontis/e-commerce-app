@@ -8,7 +8,7 @@ import { selectCollection } from '../../../redux/shop/shop.selectors.js';
 import './collection.styles.scss';
 
 const CollectionPage = ({ match, collection }) => {
-	console.log(match.params.categ);
+	
 	const { title, items } = collection;
 	return (
 		<div className="collection-page">

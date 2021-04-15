@@ -8,7 +8,7 @@ const CollectionPreview = ({ title, items }) => (
     <div className='collection-preview'>
         <div>
             <span className='title'><h1>{title.toUpperCase()}</h1></span>
-            <span className='expand'><Link to={`/${title.toLowerCase()}`}>View all...</Link></span>
+            <span className='expand'><Link to={`shop/${title.toLowerCase()}`}>View all...</Link></span>
         </div>
         <div className='preview'>
             {

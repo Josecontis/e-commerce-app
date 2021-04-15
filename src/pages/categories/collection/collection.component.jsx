@@ -1,33 +1,30 @@
 import React from 'react';
-import './collection.styles.scss';
+import { connect } from 'react-redux';
+
 import CollectionItem from '../../../components/collection-item/collection-item.component.jsx';
 
-class Collection extends React.Component {
-    constructor(props) {
-        super(props);
+import { selectCollection } from '../../../redux/shop/shop.selectors.js';
 
-        this.state = {
-            collections: props //inizializza collections con il vettore di prodotti presi dalla specie di JSON file
-        }
-    }
-    render() {
-        const { collections } = this.state; //copia in una nuova costante lo stato dell'istanza di classe
-        return (
-            <div>
-                <span className='title'><h1>{collections.props.title.toUpperCase()}</h1></span>
+import './collection.styles.scss';
 
-                <div className='collection'>
-                    <div></div>
-                    <div className='preview'>
-                        {
-                            //per ogni item identificato dall'id viene creato un oggetto CollectionPreview che è la lista fino a 4 item
-                            collections.props.items.map(item =>
-                                <CollectionItem key={item.id} item={item} />
-                            )
-                        }
-                    </div>
-                </div>
-            </div>);
-    }
-}
-export default Collection
+const CollectionPage = ({ match, collection }) => {
+	console.log(match.params.categ);
+	const { title, items } = collection;
+	return (
+		<div className="collection-page">
+			<h2 className='title'>{ title }</h2>
+			<div className="items">
+				{
+					items.map(item => (
+						<CollectionItem key={item.id} item={item} /> 
+				))}
+			</div>
+		</div>
+	);
+};
+
+const mapStateToProps = (state, ownProps) => ({
+	collection: selectCollection(ownProps.match.params.collectionId)(state)
+})
+
+export default connect(mapStateToProps)(CollectionPage);

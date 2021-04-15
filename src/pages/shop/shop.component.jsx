@@ -1,28 +1,18 @@
 import React from 'react';
-import SHOP_DATA from './shop.data.js';
-import CollectionPreview from '../../components/collection-preview/collection-preview.component.jsx';
+import { Route } from 'react-router-dom';
 
-class ShopPage extends React.Component{
-    constructor(props)
-    {
-        super(props);
+import CollectionsOverview from '../../components/collection-overview/collection-overview.component';
+import CollectionPage from '../categories/collection/collection.component';
 
-        this.state = {
-            collections: SHOP_DATA //inizializza collections con il vettore di prodotti presi dalla specie di JSON file
-        }
-    }
-    render(){
-        const {collections} = this.state; //copia in una nuova costante lo stato dell'istanza di classe
-        return (<div className='shop-page'>
-            {
-                //per ogni item identificato dall'id viene creato un oggetto CollectionPreview che è la lista fino a 4 item
-                collections.map(({id, ...otherCollectionProps}) => (
-                    <CollectionPreview key= {id}{ ...otherCollectionProps}/>
-                ))
-            }
+const ShopPage = ({ match }) => {
+console.log(match);
 
-        </div>);
-       
-    }
-}
+return(
+	<div className='shop-page'> 
+		<Route exact path={`${match.path}`} component={CollectionsOverview} />
+		<Route path={`${match.path}/:collectionId`} component={CollectionPage} />
+	</div>
+);
+};
+
 export default ShopPage;

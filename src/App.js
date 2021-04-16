@@ -63,8 +63,8 @@ const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser //aggiorna lo stato dell'utente
 })
 
-const mapDispatchToProps = dispatch => ({ //state è rootreducer
-	setCurrentUser: user => dispatch(setCurrentUser(user)) //prende in input un azione da assegnare ad ogni producer
+const mapDispatchToProps = dispatch => ({
+	setCurrentUser: user => dispatch(setCurrentUser(user)) //prende in input un azione da assegnare ad ogni reducer che aggiornerà lo stato
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

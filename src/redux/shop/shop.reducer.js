@@ -5,6 +5,7 @@ const INITIAL_STATE = {
 	collections: SHOP_DATA
 };
 
+//riceve l'azione da applicare allo state (es SET USER LOGIN)
 const shopReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		default:

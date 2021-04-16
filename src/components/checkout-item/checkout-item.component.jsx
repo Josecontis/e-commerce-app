@@ -24,6 +24,7 @@ const checkoutItem = ({ clearItem, cartItem, addItem, removeItem }) => {
 	);	
 };
 
+//metodo per effettuare le operazioni sugli item nel carrello come rimuovi incrementa o decrementa 
 const mapDispatchToProps = dispatch => ({
 	clearItem: item => dispatch(clearItemFromCart(item)),
 	addItem: item => dispatch(addItem(item)),

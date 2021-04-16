@@ -7,6 +7,7 @@ import { selectCollections, selectCollectionFromPreview } from '../../redux/shop
 
 import '../../components/collection-overview/collection-overview.styles.scss';
 
+//metodo che crea le componenti della pagina shop <4 items
 const CollectionsOverview = ({ collections }) => ( 
 	<div className="collections-overview">
 		{collections.map(({ id, ...otherCollectionProps }) => (

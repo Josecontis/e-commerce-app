@@ -13,7 +13,7 @@ const persistConfig = {
     whitelist: ['cart']
     
 }
-
+//racchiude tutte le redux utilizzate
 const rootReducer = combineReducers({
     user: userReducer,
     cart: cartReducer,

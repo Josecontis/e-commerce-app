@@ -1,5 +1,6 @@
 import SHOP_DATA from './shop.data';
 
+//assegna allo stato iniziale l'hashtable shopdata
 const INITIAL_STATE = {
 	collections: SHOP_DATA
 };

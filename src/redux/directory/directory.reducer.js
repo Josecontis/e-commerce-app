@@ -1,3 +1,4 @@
+//stato iniziale per le directory nella pagina iniziale (o meglio nelle menuitem card)
 const INITIAL_STATE = {
     sections: [{
         title: 'hats',

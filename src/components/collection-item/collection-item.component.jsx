@@ -5,7 +5,7 @@ import { addItem } from '../../redux/cart/cart.action';
 import CustomButton from '../custom-button/custom-button.component';
 import '../collection-item/collection-item.styles.scss';
 
-/*classe che definisce lo stile per singoli item o prodotti*/
+/*metodo che definisce lo stile per singoli item o prodotti*/
 const CollectionItem = ({ item, addItem }) => {
 	const { name, price, imageUrl } = item;
 	return (
@@ -25,7 +25,7 @@ const CollectionItem = ({ item, addItem }) => {
 	</div>
 )};
 
-//metodo per aggiungere al popup gli items
+//metodo per aggiungere al carrello gli item gli items
 const mapDispatchToProps = dispatch => ({
 	addItem: item => dispatch(addItem(item))
 })

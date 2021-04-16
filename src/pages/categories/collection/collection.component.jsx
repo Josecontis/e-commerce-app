@@ -7,6 +7,7 @@ import { selectCollection } from '../../../redux/shop/shop.selectors.js';
 
 import './collection.styles.scss';
 
+//metodo per visualizzare l'intera collezione di HATS, JACKETS.. su ogni pagina corrispondente
 const CollectionPage = ({ match, collection }) => {
 	
 	const { title, items } = collection;
@@ -24,7 +25,7 @@ const CollectionPage = ({ match, collection }) => {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-	collection: selectCollection(ownProps.match.params.collectionId)(state)
+	collection: selectCollection(ownProps.match.params.collectionId)(state) //la collection viene creata dinamicamente a seconda della pagina (es HATS, JACKETS...)
 })
 
 export default connect(mapStateToProps)(CollectionPage);

@@ -35,6 +35,21 @@ export const createUserProfileDocument = async (userAuth, additionalData) => { /
 	}	
 	return userRef;
 }
+
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) =>{
+	const collectionRef = firestore.collection(collectionKey);
+	
+	const batch = firestore.batch();
+	//per ogni categoria (obj) assegna un id univoco contenuto in newDocRef
+	objectsToAdd.forEach(obj => {
+		const newDocRef = collectionRef.doc();
+		batch.set(newDocRef, obj);
+	});
+
+	return await batch.commit()
+}
+
+
 //sintassi per login con google
 firebase.initializeApp(config);
 

@@ -11,8 +11,8 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
-import { auth, createUserProfileDocument, addCollectionAndDocuments } from './firebase/firebase.utils';
-import { selectCollectionFromPreview } from './redux/shop/shop.selectors';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+
 
 import './App.css';
 
@@ -21,7 +21,7 @@ class App extends React.Component {
 	unsubscribeFromAuth = null;
 
 	componentDidMount() {
-		const { setCurrentUser, collectionsArray } = this.props;
+		const { setCurrentUser } = this.props;
 		this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {//async per la richiesta API
 			if (userAuth) {//controlla se l'utente è autenticato
 				const userRef = await createUserProfileDocument(userAuth);//prelevo dati dell'utente da inserire nel DB
@@ -35,9 +35,6 @@ class App extends React.Component {
 				});
 			} else {
 				setCurrentUser(userAuth); //istanzio le info dell'utente connesso
-				addCollectionAndDocuments('collections', collectionsArray.map(({title, items}) => ({title, items}))); 
-				//richiama il metodo per aggiungere i dati al db passando il titolo e gli item della categoria 
-				//dell'array senza l'id che verrà automaticamente inserito da firestore
 			}
 		});
 	}
@@ -64,7 +61,6 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser, //aggiorna lo stato dell'utente
-	collectionsArray: selectCollectionFromPreview //aggiorna lo stato delle collection ovvero gli items
 })
 
 const mapDispatchToProps = dispatch => ({

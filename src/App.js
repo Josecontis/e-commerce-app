@@ -14,7 +14,7 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 
-import './App.css';
+import {GlobalStyle} from './global.styles';
 
 class App extends React.Component {
 
@@ -46,6 +46,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
+				<GlobalStyle/> {/*include lo stile css dell'intero sito applicando il responsive */}
 				<Header />
 				<Switch>
 					<Route exact path='/' component={HomePage} />{/*exact indica che il path è univico per qll page, path è l'url che in questo caso di HomePage è nullo e component è la pagina*/}

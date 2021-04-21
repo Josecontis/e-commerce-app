@@ -5,15 +5,15 @@ import { createStructuredSelector } from 'reselect';
 import CollectionPreview from '../collection-preview/collection-preview.component';
 import { selectCollectionFromPreview } from '../../redux/shop/shop.selectors';
 
-import '../../components/collection-overview/collection-overview.styles.scss';
+import {CollectionsOverviewStyles} from './collection-overview.styles.jsx';
 
 //metodo che crea le componenti della pagina shop <4 items
 const CollectionsOverview = ({ collections }) => ( 
-	<div className="collections-overview">
+	<CollectionsOverviewStyles>
 		{collections.map(({ id, ...otherCollectionProps }) => (
 			<CollectionPreview key={id} {...otherCollectionProps} />
 		))}
-	</div>
+	</CollectionsOverviewStyles>
 );
 
 

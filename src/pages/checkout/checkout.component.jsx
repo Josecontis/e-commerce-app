@@ -2,42 +2,49 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import '../checkout/checkout.styles.scss';
+import {
+    CheckoutPageContainer,
+    CheckoutHeaderContainer,
+    HeaderBlockContainer,
+    TotalContainer,
+    WarningContainer
+  } from './checkout.styles';
+
 import { selectCartItems, selectCartTotal } from '../../redux/cart/cart.selectors';
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
 import StripeCheckoutButton from '../../components/checkout/stripe-button.component';
 
 const CheckoutPage = ({ cartItems, total }) => (
-    <div className='checkout-page'>
-        <div className='checkout-header'>
-            <div className='checkout-block'>
+    <CheckoutPageContainer>
+        <CheckoutHeaderContainer>
+            <HeaderBlockContainer>
                 <span>PRODUCT</span>
-            </div>
-            <div className='checkout-block'>
+            </HeaderBlockContainer>
+            <HeaderBlockContainer>
                 <span>DESCRIPTION</span>
-            </div>
-            <div className='checkout-block'>
+            </HeaderBlockContainer>
+            <HeaderBlockContainer>
                 <span>QUANTITY</span>
-            </div>
-            <div className='checkout-block'>
+            </HeaderBlockContainer>
+            <HeaderBlockContainer>
                 <span>PRICE</span>
-            </div>
-            <div className='checkout-block'>
+            </HeaderBlockContainer>
+            <HeaderBlockContainer>
                 <span>REMOVE</span>
-            </div>
-        </div>
+            </HeaderBlockContainer>
+        </CheckoutHeaderContainer>
         {
             cartItems.map(cartItem => (
                 <CheckoutItem key={cartItem.id} cartItem={cartItem} />
             ))}
-        <div className='total'>TOTAL: ${total}</div>
-        <div className='test-warning'>
+        <TotalContainer>TOTAL: ${total}</TotalContainer>
+        <WarningContainer>
               *Please use the followig test credit cards for payments*
               <br/>
               4242 4242 4242 4242 - Exp: 01 / 22 - CVV: 123
-        </div>
+        </WarningContainer>
         <StripeCheckoutButton price={total} />
-    </div>
+    </CheckoutPageContainer>
 );
 
 //aggiorna lo stato degli item nel carrello ovvero il prezzo e gli item nel carrello

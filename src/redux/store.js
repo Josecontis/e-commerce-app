@@ -1,13 +1,13 @@
 //questo modulo serve per prendere l'azione e passarla agli altri moduli che la gestiranno. utile per il debug!
 import { createStore, applyMiddleware } from 'redux';
 import { persistStore } from 'redux-persist';
-
 import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 import rootReducer from './root-reducer';
 
 //il logger è un middleware che prende le azioni e le visualizza nella console log
-const middlewares = []; //vettore di logger visibili in console che rappresentano le azioni effettate dall'utente
+const middlewares = [thunk]; //vettore di logger visibili in console che rappresentano le azioni effettate dall'utente
 
 if(process.env.NODE_ENV === 'development'){ //se la modalità dell app è in sviluppatore allora fai vedere i log
     middlewares.push(logger);

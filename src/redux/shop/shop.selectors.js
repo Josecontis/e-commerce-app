@@ -22,4 +22,10 @@ export const selectCollection = (collectionUrlParam) =>
   export const selectIsCollectionFetching = createSelector(
     [selectShop],
     shop => shop.isFetching
-  )
+  );
+
+  //metodo per eliminare l'errore del title null, perchè sarà verificata se la collezione è null o no al refresh iniziale della pagina
+  export const selectIsCollectionsLoaded = createSelector(
+    [selectShop],
+    shop => !!shop.collections //!!0 è false quindi se la collection è stata caricata sarà true altimenti false
+  );
